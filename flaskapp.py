@@ -9,8 +9,6 @@ DB_PATH = '/var/www/html/flaskapp/hitesj.db'
 # SQLite setup
 conn = sqlite3.connect(DB_PATH)
 c = conn.cursor()
-CREATE TABLE users ( id INTEGER PRIAMRY KEY AUTOINCREMENT, username TEXT NO NULL, password TEXT NOT NULL, email TEXT NOT NULL, address TEXT, firstname TEXT, lastname TEXT );
-CREATE TABLE files ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, content BLOB NOT NULL, username TEXT);
 c.execute('''CREATE TABLE IF NOT EXISTS users 
             ( id INTEGER PRIAMRY KEY AUTOINCREMENT,
                 username TEXT NO NULL,
