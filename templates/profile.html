@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+</head>
+<body>
+    <table border="1" cellpadding="6" cellspacing="0">
+        <thead>
+            <th>Personal Information</th>
+            <th>{{ user[0] }} details</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>First Name:</td>
+                <td>{{ user[1] }}</td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td>{{ user[2] }}</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>{{ user[3] }}</td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td>{{ user[4] }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <form method="GET" action="/login">
+        <input type="submit" value="Logout">
+    </form>
+    <form method="POST" action="/profile/{{user[0]}}", enctype="multipart/form-data">
+        <label for "file">Upload a file:</label>
+        <input type="file" id="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+    {% if files and files|length > 0%}
+        <table border="1" cellpadding="6" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Uploaded File (Click to Download)</th>
+                    <th>Word Count</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for file in files %}
+                <tr>
+                    <td><a href={{file.id}} download><button>{{file.name}}</button></a></td>
+                    <td>{{file.words}} words</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
